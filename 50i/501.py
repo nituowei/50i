@@ -9,7 +9,7 @@ app = Flask(__name__)
 # 加载五十音数据
 with open('hiragana.json', 'r', encoding='utf-8') as f:
     hiragana_data = json.load(f)
-
+print(hiragana_data)
 @app.route('/')
 def index():
     # 渲染主页
@@ -28,9 +28,8 @@ def review():
 @app.route('/get_romanization')
 def get_romanization():
     kana = request.args.get('kana')
-    romanization = hiragana_data.get(kana, {}).get('romanization', '')
+    romanization = hiragana_data.get(kana, '')  # 直接使用字典键来获取罗马音值
     return jsonify({'romanization': romanization})
-
 
 
 if __name__ == '__main__':
