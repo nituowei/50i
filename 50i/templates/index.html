@@ -1,0 +1,72 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五十音复习</title>
+    <style>
+        /* 简单的样式 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .hiragana-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px;
+        }
+        .hiragana-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            cursor: pointer;
+        }
+        .hiragana-item.selected {
+            background-color: #f0f0f0;
+        }
+        #reviewBtn {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hiragana-grid" id="hiraganaGrid"></div>
+<button id="reviewBtn">复习</button>
+
+<script>
+    // 获取五十音数据
+    fetch('/get_hiragana_data')
+        .then(response => response.json())
+        .then(data => {
+            const hiraganaGrid = document.getElementById('hiraganaGrid');
+            for (const kana in data) {
+                const item = document.createElement('div');
+                item.className = 'hiragana-item';
+                item.textContent = kana;
+                item.addEventListener('click', () => {
+                    item.classList.toggle('selected');
+                });
+                hiraganaGrid.appendChild(item);
+            }
+        });
+
+    // 复习按钮事件
+    document.getElementById('reviewBtn').addEventListener('click', () => {
+        const selected = document.querySelectorAll('.hiragana-item.selected');
+        if (selected.length > 0) {
+            const selectedKana = Array.from(selected).map(item => item.textContent);
+            localStorage.setItem('selectedKana', JSON.stringify(selectedKana));
+            // 跳转到复习页面
+            window.location.href = '/review';
+        } else {
+            alert('请选择至少一个音素进行复习');
+        }
+    });
+</script>
+
+</body>
+</html>
