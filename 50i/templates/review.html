@@ -2,13 +2,25 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- 引入 CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>复习中</title>
+    <title>快乐的复习吧~</title>
+    <!--
+font-family: 'Arial', sans-serif;: 设置页面上文字的字体为Arial，如果Arial不可用，则使用任意无衬线字体。
+background-color: #f9f9f9;: 页面背景颜色设置为淡灰色。
+margin: 0; padding: 0;: 将页面的外边距和内边距设置为0，以移除默认的空白边距。
+display: flex;: 启用弹性盒布局，方便子元素的水平和垂直居中。
+flex-direction: column;: 设置弹性盒子的方向为垂直方向。
+align-items: center;: 在水平方向上居中对齐子元素。
+justify-content: center;: 在垂直方向上居中对齐子元素。
+height: 100vh;: 设置body的高度为视口高度的100%，确保内容在垂直方向上居中。
+-->
     <style>
     body {
         font-family: 'Arial', sans-serif;
-        background-color: #f9f9f9;
+        background-color: #227700;
         margin: 0;
         padding: 0;
         display: flex;
@@ -17,6 +29,7 @@
         justify-content: center;
         height: 100vh;
     }
+
 
     h1 {
         font-size: 2em;
@@ -64,9 +77,14 @@
 <body>
 
 <div id="hiraganaDisplay"></div>
-<button id="backBtn">返回主页</button>
-<button id="romanBtn">罗马音</button>
-<button id="nextBtn">下一个</button>
+<!-- 弹窗元素，初始时不显示 -->
+<div id="romajiPopup" style="display: none;">
+    <!-- 这里将显示罗马音内容 -->
+</div>
+
+<button id="backBtn">Home</button>
+<button id="romanBtn">Romaji</button>
+<button id="nextBtn">Next</button>
 
 <script>
     let selectedKana = JSON.parse(localStorage.getItem('selectedKana'));
@@ -82,17 +100,6 @@
 
     document.getElementById('nextBtn').addEventListener('click', showRandomKana);
 
-    document.getElementById('romanBtn').addEventListener('click', () => {
-        // 显示罗马音
-        if (currentIndex >= 0) {
-            fetch(`/get_romanization?kana=${selectedKana[currentIndex]}`)
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.romanization);  // 或者你可以以其他方式显示罗马音
-                });
-        }
-    });
-
     document.getElementById('backBtn').addEventListener('click', () => {
         // 返回主页
         window.location.href = '/';
@@ -101,6 +108,10 @@
     // 初始显示一个随机音素
     showRandomKana();
 </script>
+
+<!-- 引入 JavaScript -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 
 </body>
 </html>

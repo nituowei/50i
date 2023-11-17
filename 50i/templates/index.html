@@ -9,33 +9,40 @@
         /* 简单的样式 */
         body {
             font-family: Arial, sans-serif;
+            background-color: #227700;
         }
         .hiragana-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin: 20px;
+            gap: 15px;
+            margin: 30px;
+            border-radius: 10px; /* 添加圆角 */
         }
         .hiragana-item {
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 3px solid #f0f0f0;
             text-align: center;
             cursor: pointer;
+            border-radius: 10px; /* 添加圆角 */
+            font-size: 2em; /* 或者尝试其他值，如2.5em */
         }
         .hiragana-item.selected {
             background-color: #f0f0f0;
         }
         #reviewBtn {
-            margin: 20px;
+            margin: 20px auto;
+            margin-bottom: 80px; /* 页面底端的距离增加一倍 */
             padding: 10px 20px;
             font-size: 16px;
+            display: block; /* 使按钮可应用居中样式 */
+            border-radius: 10px; /* 添加圆角 */
         }
     </style>
 </head>
 <body>
 
 <div class="hiragana-grid" id="hiraganaGrid"></div>
-<button id="reviewBtn">复习</button>
+<button id="reviewBtn">Start Happily~</button>
 
 <script>
     // 获取五十音数据
@@ -63,7 +70,7 @@
             // 跳转到复习页面
             window.location.href = '/review';
         } else {
-            alert('请选择至少一个音素进行复习');
+            alert('FBI WARNING!');
         }
     });
 </script>
