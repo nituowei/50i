@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- 引入 CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>快乐的复习吧~</title>
     <!--
 font-family: 'Arial', sans-serif;: 设置页面上文字的字体为Arial，如果Arial不可用，则使用任意无衬线字体。
@@ -18,6 +18,12 @@ justify-content: center;: 在垂直方向上居中对齐子元素。
 height: 100vh;: 设置body的高度为视口高度的100%，确保内容在垂直方向上居中。
 -->
     <style>
+    #hiraganaDisplay {
+        font-size: 4em; /* 调整为原来的两倍 */
+        margin-bottom: 180px; /* 设置距离下方元素的外边距 */
+        text-align: center; /* 居中对齐文本 */
+    }
+
     body {
         font-family: 'Arial', sans-serif;
         background-color: #227700;
@@ -42,12 +48,17 @@ height: 100vh;: 设置body的高度为视口高度的100%，确保内容在垂�
     }
 
     .buttons {
+        margin: 0;
         display: flex;
-        gap: 10px;
+        gap: 20px; /* 增大按钮之间的间隙 */
+        justify-content: center; /* 确保按钮组居中 */
+        margin-top: 50px; /* 增加上方外边距 */
     }
 
     button {
-        font-size: 1em;
+        background-color: #227700;
+        font-size: 1.5em;
+        color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
@@ -76,15 +87,34 @@ height: 100vh;: 设置body的高度为视口高度的100%，确保内容在垂�
 </head>
 <body>
 
+
+
 <div id="hiraganaDisplay"></div>
+
 <!-- 弹窗元素，初始时不显示 -->
 <div id="romajiPopup" style="display: none;">
     <!-- 这里将显示罗马音内容 -->
 </div>
 
+<div class="buttons">
 <button id="backBtn">Home</button>
 <button id="romanBtn">Romaji</button>
 <button id="nextBtn">Next</button>
+</div>
+
+<script>
+    window.addEventListener('dblclick', function(event) {
+        event.preventDefault();
+    });
+</script>
+
+<script>
+    document.querySelectorAll('button').forEach(function(button) {
+        button.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+        });
+    });
+</script>
 
 <script>
     let selectedKana = JSON.parse(localStorage.getItem('selectedKana'));

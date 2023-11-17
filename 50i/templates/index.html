@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>五十音复习</title>
+    <title>五十音随机复习</title>
     <style>
-        /* 简单的样式 */
+        /* 简单的样式 Arial */
         body {
-            font-family: Arial, sans-serif;
+            font-family: Microsoft YaHei Light, sans-serif;
             background-color: #227700;
         }
         .hiragana-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 15px;
-            margin: 30px;
+            margin: 100px auto;
             border-radius: 10px; /* 添加圆角 */
         }
         .hiragana-item {
             padding: 10px;
-            border: 3px solid #f0f0f0;
+            border: 1px solid #f0f0f0;
             text-align: center;
             cursor: pointer;
             border-radius: 10px; /* 添加圆角 */
@@ -30,6 +30,9 @@
             background-color: #f0f0f0;
         }
         #reviewBtn {
+            background-color: #227700;
+            /* border: 1px solid #FFFFFF;*/
+            color: white;
             margin: 20px auto;
             margin-bottom: 80px; /* 页面底端的距离增加一倍 */
             padding: 10px 20px;
@@ -41,8 +44,25 @@
 </head>
 <body>
 
+<div class="header-text">点击选择你需要复习的假名<br>然后点击“START”开始随机复习</div>
 <div class="hiragana-grid" id="hiraganaGrid"></div>
-<button id="reviewBtn">Start Happily~</button>
+<button id="reviewBtn">START</button>
+
+<style>
+.header-text {
+    background-color: #227700;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; /* 确保在最上层 */
+    margin-bottom: 20px; /* 添加底部间距 */
+
+}
+</style>
 
 <script>
     // 获取五十音数据

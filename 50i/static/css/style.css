@@ -1,10 +1,18 @@
 #romajiPopup {
+    font-size: 3em; /* 调整为原来的3倍 */
+    color: black;
     position: fixed; /* 固定位置，始终在屏幕中央 */
-    top: 20%; /* 距离顶部20% */
+    top: 50%; /* 距离顶部50% */
     left: 50%; /* 距离左边50% */
     transform: translate(-50%, -50%); /* 确保居中显示 */
-    border: 1px solid #000; /* 黑色边框 */
+    /* border: 5px solid #000; 黑色边框 */
+    border-radius: 5px; /* 添加圆角 */
     padding: 20px; /* 内部间距 */
-    background-color: white; /* 白色背景 */
+    background-color: #227700; /* 背景 */
     z-index: 1000; /* 确保弹窗在最上层 */
+    border-top-width: 1px; /* 上边框宽度 */
+    border-left-width: 1px; /* 左边框宽度 */
+    border-right-width: 1px; /* 右边框宽度 */
+    border-bottom-width: 1px; /* 下边框宽度 */
 }
+
