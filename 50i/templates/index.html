@@ -33,13 +33,25 @@
             background-color: #227700;
             /* border: 1px solid #FFFFFF;*/
             color: white;
-            margin: 20px auto;
-            margin-bottom: 80px; /* 页面底端的距离增加一倍 */
+            margin: 5px auto;
+            margin-bottom: 20px; /* 页面底端的距离 */
             padding: 10px 20px;
             font-size: 16px;
             display: block; /* 使按钮可应用居中样式 */
             border-radius: 10px; /* 添加圆角 */
         }
+        #reviewAllBtn {
+            background-color: #227700;
+            /* border: 1px solid #FFFFFF;*/
+            color: white;
+            margin: 5px auto;
+            margin-bottom: 80px; /* 页面底端的距离 */
+            padding: 10px 20px;
+            font-size: 16px;
+            display: block; /* 使按钮可应用居中样式 */
+            border-radius: 10px; /* 添加圆角 */
+        }
+
     </style>
 </head>
 <body>
@@ -47,6 +59,7 @@
 <div class="header-text">点击选择你需要复习的假名<br>然后点击“START”开始随机复习</div>
 <div class="hiragana-grid" id="hiraganaGrid"></div>
 <button id="reviewBtn">START</button>
+<button id="reviewAllBtn">Give-Me-All</button>
 
 <style>
 .header-text {
@@ -63,6 +76,33 @@
 
 }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('reviewAllBtn').addEventListener('click', function() {
+        selectAllKana();
+        startReview();
+    });
+});
+    function selectAllKana() {
+    // 获取页面上所有的假名元素
+    const kanaItems = document.querySelectorAll('.hiragana-item');
+
+    // 遍历并模拟点击每个假名，使其被选中
+    kanaItems.forEach(item => {
+        if (!item.classList.contains('selected')) {
+            item.classList.add('selected');
+        }
+    });
+}
+
+
+    function startReview() {
+    // 模拟点击开始复习的按钮
+    document.getElementById('reviewBtn').click();
+    }
+</script>
+
 
 <script>
     // 获取五十音数据
