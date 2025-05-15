@@ -1,0 +1,147 @@
+<!-- templates/review.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 引入 CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <title>快乐的复习吧~</title>
+    <!--
+font-family: 'Arial', sans-serif;: 设置页面上文字的字体为Arial，如果Arial不可用，则使用任意无衬线字体。
+background-color: #f9f9f9;: 页面背景颜色设置为淡灰色。
+margin: 0; padding: 0;: 将页面的外边距和内边距设置为0，以移除默认的空白边距。
+display: flex;: 启用弹性盒布局，方便子元素的水平和垂直居中。
+flex-direction: column;: 设置弹性盒子的方向为垂直方向。
+align-items: center;: 在水平方向上居中对齐子元素。
+justify-content: center;: 在垂直方向上居中对齐子元素。
+height: 100vh;: 设置body的高度为视口高度的100%，确保内容在垂直方向上居中。
+-->
+    <style>
+    #hiraganaDisplay {
+        font-size: 4em; /* 调整为原来的两倍 */
+        margin-bottom: 180px; /* 设置距离下方元素的外边距 */
+        text-align: center; /* 居中对齐文本 */
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #227700;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+
+    h1 {
+        font-size: 2em;
+        color: #333;
+    }
+
+    .kana-display {
+        font-size: 4em;
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        margin: 0;
+        display: flex;
+        gap: 20px; /* 增大按钮之间的间隙 */
+        justify-content: center; /* 确保按钮组居中 */
+        margin-top: 50px; /* 增加上方外边距 */
+    }
+
+    button {
+        background-color: #227700;
+        font-size: 1.5em;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    .roman-button {
+        background-color: #008CBA;
+        color: white;
+    }
+
+    .next-button {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .back-button {
+        background-color: #f44336;
+        color: white;
+    }
+    </style>
+</head>
+<body>
+
+
+
+<div id="hiraganaDisplay"></div>
+
+<!-- 弹窗元素，初始时不显示 -->
+<div id="romajiPopup" style="display: none;">
+    <!-- 这里将显示罗马音内容 -->
+</div>
+
+<div class="buttons">
+<button id="backBtn">Home</button>
+<button id="romanBtn">Romaji</button>
+<button id="nextBtn">Next</button>
+</div>
+
+<script>
+    window.addEventListener('dblclick', function(event) {
+        event.preventDefault();
+    });
+</script>
+
+<script>
+    document.querySelectorAll('button').forEach(function(button) {
+        button.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+        });
+    });
+</script>
+
+<script>
+    let selectedKana = JSON.parse(localStorage.getItem('selectedKana'));
+    let currentIndex = -1;  // 初始索引
+    const hiraganaDisplay = document.getElementById('hiraganaDisplay');
+
+    function showRandomKana() {
+        // 随机选择一个音素
+        const randomIndex = Math.floor(Math.random() * selectedKana.length);
+        currentIndex = randomIndex;
+        hiraganaDisplay.textContent = selectedKana[randomIndex];
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', showRandomKana);
+
+    document.getElementById('backBtn').addEventListener('click', () => {
+        // 返回主页
+        window.location.href = '/';
+    });
+
+    // 初始显示一个随机音素
+    showRandomKana();
+</script>
+
+<!-- 引入 JavaScript -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+</body>
+</html>

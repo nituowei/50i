@@ -1,0 +1,10 @@
+#romajiPopup {
+    position: fixed; /* 固定位置，始终在屏幕中央 */
+    top: 20%; /* 距离顶部20% */
+    left: 50%; /* 距离左边50% */
+    transform: translate(-50%, -50%); /* 确保居中显示 */
+    border: 1px solid #000; /* 黑色边框 */
+    padding: 20px; /* 内部间距 */
+    background-color: white; /* 白色背景 */
+    z-index: 1000; /* 确保弹窗在最上层 */
+}
